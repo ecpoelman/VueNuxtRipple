@@ -1,62 +1,99 @@
 export default {
-  /*
-  ** Rendering mode
-  ** Doc: https://nuxtjs.org/api/configuration-mode
-  */
-  mode: 'universal',
-
-  /*
-  ** Headers of the page
-  ** Doc: https://vue-meta.nuxtjs.org/api/#metainfo-properties
-  */
   head: {
-    title: 'Nuxt.js starter for CSB',
+    title: 'Vue Nuxt Ripple',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Official Nuxt.js starter for CodeSandBox' }
+      { name: 'msapplication-TileColor', content: '#da532c' },
+      { name: 'theme-color', content: '#ffffff' },
+      { hid: 'description', name: 'description', content: 'Example site for showing how to add custom work' }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: 'static/favicon.ico' }
+    ]
   },
-
   /*
   ** Global CSS
-  ** Doc: https://nuxtjs.org/api/configuration-css
   */
-  css: [],
-
+  css: [
+    '@/assets/_custom.scss'
+  ],
   /*
   ** Plugins to load before mounting the App
-  ** Doc: https://nuxtjs.org/guide/plugins
+  ** https://nuxtjs.org/guide/plugins
   */
-  plugins: [],
+  plugins: [
+  ],
+  /*
+  ** Auto import components
+  ** See https://nuxtjs.org/api/configuration-components
+  */
+  components: true,
+  /*
+  ** Nuxt.js dev-modules
+  */
+  buildModules: [
 
+  ],
   /*
   ** Nuxt.js modules
-  ** Doc: https://nuxtjs.org/guide/modules
   */
   modules: [
-    // Doc: https://http.nuxtjs.org
-    '@nuxt/http',
-    // TODO: Remove it if you want to eject from codeSandbox
-    './codesandbox'
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/axios',
+    '@dpc-sdp/ripple-nuxt-ui'
   ],
 
   /*
-  ** HTTP module configuration
+  ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
   */
-  http: {
-    // See https://http.nuxtjs.org/api/#options
+  axios: {},
+  ripple: {
+    nuxt: true, // enable if using in SSR environment eg: nuxt
+    isDev: true, // set to true to enable dev mode, used to show Ripple component errors if have.
+    hostname: 'localhost', // set hostname for rpl-link etc
+    origin: '', // URL with protocol://host(:port) e.g. http://localhost:3000
+    quickexit: true, // enable quick exit feature
+    quickexiturl: 'https://www.google.com', // URL to use for quickexit
+    plugins: [], // array of cheerio transformer function plugins to pass to RplMarkup
+    viclogo: true, // whether to display primary vic.gov.au logo
+    externalLinksInNewWindow: false, // (Bool) Whether links open in new window by default
+    card: {
+      trimFieldfonts: ['Your-font-name'] // If custom fonts are used in card trimmed field, set them here.
+    }
   },
-
   /*
   ** Build configuration
-  ** Doc: https://nuxtjs.org/api/configuration-build
+  ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {}
+    transpile: [
+      '@dpc-sdp/ripple-global',
+      '@dpc-sdp/ripple-icon',
+      '@dpc-sdp/ripple-grid',
+      '@dpc-sdp/ripple-layout',
+      '@dpc-sdp/ripple-card',
+      '@dpc-sdp/ripple-grants',
+      '@dpc-sdp/ripple-markup',
+      '@dpc-sdp/ripple-site-header',
+      '@dpc-sdp/ripple-link',
+      '@dpc-sdp/ripple-search',
+      '@dpc-sdp/ripple-meta-tag',
+      '@dpc-sdp/ripple-form',
+      '@dpc-sdp/ripple-button',
+      '@dpc-sdp/ripple-document-link',
+      '@dpc-sdp/ripple-embedded-video',
+      '@dpc-sdp/ripple-pagination',
+      '@dpc-sdp/ripple-alert',
+      '@dpc-sdp/ripple-hero-banner'
+    ],
+    loaders: {
+      sass: {
+        sassOptions: {
+          indentedSyntax: true
+        }
+      }
+    }
   }
-};
+}

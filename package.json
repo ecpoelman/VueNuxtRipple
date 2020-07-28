@@ -1,7 +1,7 @@
 {
-  "name": "codesandbox-nuxt",
+  "name": "vuenuxtripple",
   "version": "1.0.0",
-  "description": "Nuxt starter for CodeSandBox",
+  "description": "",
   "author": "Nuxt.js Team",
   "private": true,
   "scripts": {
@@ -12,8 +12,27 @@
     "post-update": "yarn upgrade --latest"
   },
   "dependencies": {
-    "@nuxt/http": "^0.5.0",
-    "nuxt": "^2.12.2",
-    "reqlim": "^0.0.0"
-  }
+    "@dpc-sdp/ripple-alert": "^1.11.0",
+    "@dpc-sdp/ripple-card": "^1.11.0",
+    "@dpc-sdp/ripple-grants": "^1.11.0",
+    "@dpc-sdp/ripple-grid": "^1.11.0",
+    "@dpc-sdp/ripple-layout": "^1.11.0",
+    "@dpc-sdp/ripple-markup": "^1.11.0",
+    "@dpc-sdp/ripple-hero-banner": "^1.11.0",
+    "@dpc-sdp/ripple-nuxt-ui": "^1.11.0",
+    "@nuxtjs/axios": "^5.11.0",
+    "nuxt": "^2.13.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config": "^3.0.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.2.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "node-sass": "^4.11.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^6.0.7",
+    "sass-resources-loader": "^2.0.0"
+  },
+  "keywords": []
 }
