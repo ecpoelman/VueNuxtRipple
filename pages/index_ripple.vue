@@ -23,7 +23,7 @@
         intro-text="This is supplementary intro text that can also wrap over a couple of lines."
         :show-links="true"
         link-heading="Want to know more about..."
-        :links="[{text: 'Search', url: '/search'},{text: 'About', url: '/about'},{ text: 'Connect with us', url: '#'}]"
+        :links="[{text: 'About', url: '/about'},{ text: 'Connect with us', url: '#'}]"
       />
     </rpl-row>
 
