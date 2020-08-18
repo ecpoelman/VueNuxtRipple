@@ -6,11 +6,4 @@
 // The should be managed by sass variables in _theme.scss.
 // This custom scss file is designed for any style changes can not be handled by variables.
 
-// A example of attached a text to hero banner.
-.rpl-hero-banner {
-  &::after {
-    content: 'Text from custom css';
-  }
-}
-
 

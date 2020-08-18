@@ -1,34 +1,44 @@
+const serverBaseUrl = 'http://contenta.test';
+const serverFilesUrl = 'http://contenta.test';
+
 export default {
+  mode: 'universal',
   head: {
     title: 'Vue Nuxt Ripple',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'msapplication-TileColor', content: '#da532c' },
-      { name: 'theme-color', content: '#ffffff' },
-      { hid: 'description', name: 'description', content: 'Example site for showing how to add custom work' }
+      { rel: 'stylesheet', type: 'text/css', href: '/css/bulma-4.3.css' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: 'static/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: 'static/icon.ico' },
+      { rel: 'stylesheet', type: 'text/css', href: '/css/bulma-4.3.css' },
+      { rel: 'stylesheet', type: 'text/css', href: '/css/app.css' },
     ]
   },
+  env: {
+    serverBaseUrl,
+    serverApiUrl: serverBaseUrl + '/api',
+    serverFilesUrl,
+  },
+  /*
+  ** Customize the progress-bar color
+  */
+  loading: { color: '#3B8070' },
   /*
   ** Global CSS
   */
   css: [
-    '@/assets/_custom.scss'
+    //'@/assets/_custom.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '~plugins/filters.js',
+    '~plugins/vue-lazyload'
   ],
-  /*
-  ** Auto import components
-  ** See https://nuxtjs.org/api/configuration-components
-  */
-  components: true,
   /*
   ** Nuxt.js dev-modules
   */
@@ -40,21 +50,19 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@dpc-sdp/ripple-nuxt-ui'
+    '@dpc-sdp/ripple-nuxt-ui',
+    '@nuxtjs/axios'
   ],
-
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
-  axios: {},
+  axios: {
+    // extra config e.g
+    BaseURL: serverBaseUrl
+  },
   ripple: {
     nuxt: true, // enable if using in SSR environment eg: nuxt
     isDev: true, // set to true to enable dev mode, used to show Ripple component errors if have.
     hostname: 'localhost', // set hostname for rpl-link etc
     origin: '', // URL with protocol://host(:port) e.g. http://localhost:3000
-    quickexit: true, // enable quick exit feature
+    quickexit: false, // enable quick exit feature
     quickexiturl: 'https://www.google.com', // URL to use for quickexit
     plugins: [], // array of cheerio transformer function plugins to pass to RplMarkup
     viclogo: true, // whether to display primary vic.gov.au logo
@@ -68,6 +76,19 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+    /*
+    ** You can extend webpack config here
+    */
+    extend(config, ctx) {
+      if (ctx.dev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+    },
     transpile: [
       '@dpc-sdp/ripple-global',
       '@dpc-sdp/ripple-icon',
