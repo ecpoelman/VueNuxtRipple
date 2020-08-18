@@ -1,5 +1,5 @@
-const serverBaseUrl = 'http://contenta.test';
-const serverFilesUrl = 'http://contenta.test';
+const serverBaseUrl = 'http://cms.contenta;
+const serverFilesUrl = 'http://cms.contentacms.io';
 
 export default {
   mode: 'universal',
