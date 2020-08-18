@@ -1,5 +1,5 @@
-const serverBaseUrl = 'http://cms.contentacms.io';
-const serverFilesUrl = 'http://cms.contentacms.io';
+const serverBaseUrl = 'http://contentacms.uat.webplace.com.au';
+const serverFilesUrl = 'http://contentacms.uat.webplace.com.au';
 
 export default {
   generate: {
